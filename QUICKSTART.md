@@ -5,7 +5,7 @@ Get up and running with the Tikr authentication frontend in under 5 minutes!
 ## Prerequisites Check
 
 ✅ Node.js 16+ installed (`node --version`)  
-✅ Backend running on port 8000  
+✅ Backend running on port 7000  
 ✅ Database seeded with test users  
 
 ## Step 1: Install Dependencies (First Time Only)
@@ -26,7 +26,7 @@ npm install
 
 You should see:
 ```
-INFO:     Uvicorn running on http://0.0.0.0:8000
+INFO:     Uvicorn running on http://0.0.0.0:7000
 ```
 
 ## Step 3: Seed Database (First Time Only)
@@ -108,9 +108,9 @@ You should see:
 ## 🐛 Troubleshooting
 
 ### "Cannot connect to backend"
-**Fix**: Make sure backend is running on port 8000
+**Fix**: Make sure backend is running on port 7000
 ```bash
-curl http://localhost:8000/docs
+curl http://localhost:7000/docs
 ```
 
 ### "Incorrect email or password"

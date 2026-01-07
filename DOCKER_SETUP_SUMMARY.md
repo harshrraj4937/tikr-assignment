@@ -52,8 +52,8 @@ docker compose -f docker-compose.frontend.yml up -d --build
 
 Once running, access the application at:
 - **Frontend**: http://localhost:5173
-- **Backend API**: http://localhost:8000
-- **API Docs**: http://localhost:8000/docs
+- **Backend API**: http://localhost:7000
+- **API Docs**: http://localhost:7000/docs
 
 ## 📊 Key Features
 
@@ -147,12 +147,12 @@ docker compose ps
 ```
 
 ### Port Already in Use
-If port 8000 or 5173 is already in use, either:
+If port 7000 or 5173 is already in use, either:
 1. Stop the existing process using that port
 2. Change the port in `docker-compose.yml`:
    ```yaml
    ports:
-     - "8001:8000"  # Map to different host port
+     - "7001:7000"  # Map to different host port
    ```
 
 ### Container Won't Start
@@ -170,7 +170,7 @@ Make sure both containers are running:
 docker compose ps
 ```
 
-The backend should be accessible at `http://localhost:8000` from both:
+The backend should be accessible at `http://localhost:7000` from both:
 - Your host machine (browser)
 - The frontend container
 
@@ -204,7 +204,7 @@ docker system df
 
 2. **Verify it's running**:
    - Open http://localhost:5173 in your browser
-   - Check http://localhost:8000/docs for API documentation
+   - Check http://localhost:7000/docs for API documentation
 
 3. **Run migrations** (if not already done):
    ```bash
@@ -229,7 +229,7 @@ docker system df
 - FastAPI + Uvicorn
 - Django ORM with SQLite
 - Auto-runs migrations on startup
-- Port 8000 exposed
+- Port 7000 exposed
 - Volume mounted for hot-reloading
 - Health check endpoint
 

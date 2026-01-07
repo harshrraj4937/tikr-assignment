@@ -125,10 +125,10 @@ tikr/
 
 5. **Start the backend server**:
    ```bash
-   python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
+   python -m uvicorn main:app --reload --host 0.0.0.0 --port 7000
    ```
-   Backend will be available at `http://localhost:8000`
-   API docs at `http://localhost:8000/docs`
+   Backend will be available at `http://localhost:7000`
+   API docs at `http://localhost:7000/docs`
 
 ### Frontend Setup
 
@@ -267,7 +267,7 @@ python manage.py migrate
 ### Access Django Admin
 ```bash
 python manage.py createsuperuser
-# Then visit http://localhost:8000/admin
+# Then visit http://localhost:7000/admin
 ```
 
 ## Production Considerations

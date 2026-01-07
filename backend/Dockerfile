@@ -26,8 +26,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Expose port
-EXPOSE 8000
+EXPOSE 7000
 
 # Run migrations and start the server
-CMD ["sh", "-c", "python manage.py migrate && uvicorn main:app --host 0.0.0.0 --port 8000"]
+CMD ["sh", "-c", "python manage.py migrate && uvicorn main:app --host 0.0.0.0 --port 7000"]
 

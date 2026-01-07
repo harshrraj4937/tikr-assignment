@@ -174,7 +174,7 @@ All memos have exactly 6 sections (stored as JSON):
    ```bash
    # Backend
    cd backend
-   python -m uvicorn main:app --host 0.0.0.0 --port 8000
+   python -m uvicorn main:app --host 0.0.0.0 --port 7000
    
    # Frontend
    cd frontend/UI

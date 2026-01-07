@@ -339,7 +339,7 @@ The authentication foundation is complete and ready for these additions:
 ### Common Issues
 
 **Backend not connecting:**
-- Verify backend is running on port 8000
+- Verify backend is running on port 7000
 - Check proxy settings in vite.config.ts
 - Look for CORS errors in console
 

@@ -5,7 +5,7 @@ import type { ICMemo, ICMemoCreate } from '../types/icmemo';
 
 // Create axios instance
 const api = axios.create({
-  baseURL: 'http://localhost:8000',
+  baseURL: 'http://localhost:7000',
   headers: {
     'Content-Type': 'application/json',
   },

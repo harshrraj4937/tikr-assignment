@@ -5,7 +5,7 @@ This guide will help you set up and run the Tikr frontend application.
 ## Prerequisites
 
 - Node.js 16+ and npm installed
-- Backend API running on `http://localhost:8000`
+- Backend API running on `http://localhost:7000`
 
 ## Quick Start
 
@@ -113,8 +113,8 @@ The frontend communicates with these backend endpoints:
 - `GET /auth/me` - Get current user information
 
 API requests are proxied through Vite in development:
-- `/auth/*` → `http://localhost:8000/auth/*`
-- `/api/*` → `http://localhost:8000/api/*`
+- `/auth/*` → `http://localhost:7000/auth/*`
+- `/api/*` → `http://localhost:7000/api/*`
 
 ### State Management
 
@@ -184,7 +184,7 @@ python seed_data.py
 **Problem**: Cannot connect to backend API
 
 **Solution**:
-1. Verify backend is running on port 8000
+1. Verify backend is running on port 7000
 2. Check `vite.config.ts` proxy settings
 3. Look for CORS errors in browser console
 

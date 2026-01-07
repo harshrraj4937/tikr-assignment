@@ -40,7 +40,7 @@ tikr/
   - Installs Python dependencies
   - Sets up Django + FastAPI environment
   - Runs migrations on startup
-  - Exposes port 8000
+  - Exposes port 7000
 
 #### `frontend/UI/Dockerfile`
 - **Purpose**: Defines the frontend container
@@ -160,8 +160,8 @@ chmod +x docker-*.sh
 
 # 4. Access the application
 # Frontend: http://localhost:5173
-# Backend:  http://localhost:8000
-# API Docs: http://localhost:8000/docs
+# Backend:  http://localhost:7000
+# API Docs: http://localhost:7000/docs
 ```
 
 ### Daily Development
@@ -186,7 +186,7 @@ chmod +x docker-*.sh
 
 | Service  | Internal Port | External Port | URL                       |
 |----------|--------------|---------------|---------------------------|
-| Backend  | 8000         | 8000          | http://localhost:8000     |
+| Backend  | 7000         | 7000          | http://localhost:7000     |
 | Frontend | 5173         | 5173          | http://localhost:5173     |
 
 ## 🔗 Container Names
@@ -258,7 +258,7 @@ chmod +x docker-*.sh
 
 3. **Check the application**:
    - Frontend: http://localhost:5173
-   - Backend: http://localhost:8000/docs
+   - Backend: http://localhost:7000/docs
 
 4. **Run migrations** (if needed):
    ```bash

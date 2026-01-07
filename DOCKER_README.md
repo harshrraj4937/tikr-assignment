@@ -31,8 +31,8 @@ docker compose down
 
 The application will be available at:
 - Frontend: http://localhost:5173
-- Backend API: http://localhost:8000
-- API Docs: http://localhost:8000/docs
+- Backend API: http://localhost:7000
+- API Docs: http://localhost:7000/docs
 
 ### Option 2: Run Backend Only
 
@@ -47,7 +47,7 @@ docker compose -f docker-compose.backend.yml up -d --build
 docker compose -f docker-compose.backend.yml down
 ```
 
-Backend will be available at http://localhost:8000
+Backend will be available at http://localhost:7000
 
 ### Option 3: Run Frontend Only
 
@@ -160,7 +160,7 @@ If you get a "port already in use" error:
 
 ```bash
 # Find process using the port
-sudo lsof -i :8000  # For backend
+sudo lsof -i :7000  # For backend
 sudo lsof -i :5173  # For frontend
 
 # Kill the process
@@ -170,7 +170,7 @@ kill -9 <PID>
 Or change the port in docker-compose.yml:
 ```yaml
 ports:
-  - "8001:8000"  # Use host port 8001 instead
+  - "7001:7000"  # Use host port 7001 instead
 ```
 
 ### Container Won't Start
@@ -250,7 +250,7 @@ SECRET_KEY=your-secret-key
 JWT_SECRET_KEY=your-jwt-secret
 
 # Frontend
-VITE_API_URL=http://localhost:8000
+VITE_API_URL=http://localhost:7000
 ```
 
 Then update docker-compose.yml:

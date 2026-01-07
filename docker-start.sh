@@ -10,8 +10,8 @@ docker compose up --build
 echo ""
 echo "✅ Application is running!"
 echo "Frontend: http://localhost:5173"
-echo "Backend:  http://localhost:8000"
-echo "API Docs: http://localhost:8000/docs"
+echo "Backend:  http://localhost:7000"
+echo "API Docs: http://localhost:7000/docs"
 echo ""
 echo "Press Ctrl+C to stop"
 

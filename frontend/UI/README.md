@@ -24,7 +24,7 @@ A modern React frontend built with Vite, TypeScript, and Ant Design for the Tikr
 ### Prerequisites
 
 - Node.js 16+ and npm
-- Backend API running on `http://localhost:8000`
+- Backend API running on `http://localhost:7000`
 
 ### Installation
 
@@ -109,7 +109,7 @@ All authenticated requests include the JWT token in the Authorization header.
 
 ## Environment
 
-The app is configured to proxy API requests to `http://localhost:8000` in development mode. This is configured in `vite.config.ts`.
+The app is configured to proxy API requests to `http://localhost:7000` in development mode. This is configured in `vite.config.ts`.
 
 ## Available Pages
 
@@ -131,7 +131,7 @@ Use the backend's seeded data to test with different roles:
 
 ### Backend Connection Issues
 
-Make sure the backend is running on `http://localhost:8000`. Check the proxy configuration in `vite.config.ts` if using a different port.
+Make sure the backend is running on `http://localhost:7000`. Check the proxy configuration in `vite.config.ts` if using a different port.
 
 ### Token Expiration
 

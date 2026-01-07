@@ -178,7 +178,7 @@ Frontend Request
     ↓
 Axios Interceptor (adds token)
     ↓
-Vite Proxy (/auth → http://localhost:8000/auth)
+Vite Proxy (/auth → http://localhost:7000/auth)
     ↓
 FastAPI Backend
     ↓
@@ -220,7 +220,7 @@ Frontend Component
 
 ### Prerequisites
 - Node.js 16+
-- Backend running on port 8000
+- Backend running on port 7000
 - Database seeded with test users
 
 ### Quick Start
@@ -443,7 +443,7 @@ The authentication foundation is solid and ready for:
 5. Clear localStorage if needed
 
 ### Common Issues
-- **Backend not connecting**: Verify port 8000
+- **Backend not connecting**: Verify port 7000
 - **Login fails**: Check seed data exists
 - **Dependencies error**: Reinstall node_modules
 - **Port in use**: Kill process on 5173

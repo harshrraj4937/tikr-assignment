@@ -15,7 +15,7 @@ cd backend
 pip install -r requirements.txt
 python manage.py migrate
 python seed_data.py
-python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
+python -m uvicorn main:app --reload --host 0.0.0.0 --port 7000
 ```
 
 **Terminal 2 - Frontend:**
@@ -40,8 +40,8 @@ npm run dev
 ## Access the Application
 
 - **Frontend**: http://localhost:5173
-- **Backend API**: http://localhost:8000
-- **API Documentation**: http://localhost:8000/docs
+- **Backend API**: http://localhost:7000
+- **API Documentation**: http://localhost:7000/docs
 
 ## Test Accounts
 
@@ -79,8 +79,8 @@ Login with these pre-configured accounts:
 
 **Port already in use:**
 ```bash
-# Find and kill process on port 8000
-lsof -ti:8000 | xargs kill -9
+# Find and kill process on port 7000
+lsof -ti:7000 | xargs kill -9
 ```
 
 **Database errors:**
@@ -137,7 +137,7 @@ lsof -ti:5173 | xargs kill -9
 
 You can also test the API directly using the interactive documentation:
 
-1. Open http://localhost:8000/docs
+1. Open http://localhost:7000/docs
 2. Click "Authorize" button
 3. Login via `/api/auth/login` endpoint
 4. Copy the `access_token` from response
