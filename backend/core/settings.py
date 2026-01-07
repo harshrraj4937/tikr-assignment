@@ -93,13 +93,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-# Admin panel settings for nginx proxy on port 7071
-# Uncomment these when running admin on port 7071 with nginx
-ADMIN_URL_PREFIX = os.environ.get('ADMIN_URL_PREFIX', '')
-if ADMIN_URL_PREFIX:
-    FORCE_SCRIPT_NAME = ADMIN_URL_PREFIX
-    STATIC_URL = f'{ADMIN_URL_PREFIX}/static/'
     
 # CSRF settings for reverse proxy
 CSRF_TRUSTED_ORIGINS = [
