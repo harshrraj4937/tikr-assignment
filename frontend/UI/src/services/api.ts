@@ -1,5 +1,6 @@
 import axios from 'axios';
 import type { LoginRequest, LoginResponse, User } from '../types/auth';
+import type { Deal, DealCreate, DealUpdate, DealStageUpdate, Activity } from '../types/deals';
 
 // Create axios instance
 const api = axios.create({
@@ -46,6 +47,45 @@ export const authAPI = {
 
   getCurrentUser: async (): Promise<User> => {
     const response = await api.get<User>('/api/auth/me');
+    return response.data;
+  },
+};
+
+// Deals API functions
+export const dealsAPI = {
+  listDeals: async (): Promise<Deal[]> => {
+    const response = await api.get<Deal[]>('/api/deals');
+    return response.data;
+  },
+
+  getDeal: async (dealId: number): Promise<Deal> => {
+    const response = await api.get<Deal>(`/api/deals/${dealId}`);
+    return response.data;
+  },
+
+  createDeal: async (dealData: DealCreate): Promise<Deal> => {
+    const response = await api.post<Deal>('/api/deals', dealData);
+    return response.data;
+  },
+
+  updateDeal: async (dealId: number, dealData: DealUpdate): Promise<Deal> => {
+    const response = await api.patch<Deal>(`/api/deals/${dealId}`, dealData);
+    return response.data;
+  },
+
+  updateDealStage: async (dealId: number, stage: string): Promise<Deal> => {
+    const stageData: DealStageUpdate = { stage };
+    const response = await api.patch<Deal>(`/api/deals/${dealId}/stage`, stageData);
+    return response.data;
+  },
+
+  archiveDeal: async (dealId: number): Promise<{ message: string }> => {
+    const response = await api.delete<{ message: string }>(`/api/deals/${dealId}`);
+    return response.data;
+  },
+
+  getDealActivities: async (dealId: number): Promise<Activity[]> => {
+    const response = await api.get<Activity[]>(`/api/deals/${dealId}/activities`);
     return response.data;
   },
 };
