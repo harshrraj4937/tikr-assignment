@@ -1,5 +1,4 @@
 # Docker Compose for Frontend only
-version: '3.8'
 
 services:
   frontend:

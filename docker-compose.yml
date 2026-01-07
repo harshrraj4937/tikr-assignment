@@ -1,5 +1,4 @@
 # Docker Compose for Full Stack Application (Backend + Frontend)
-version: '3.8'
 
 services:
   backend:
