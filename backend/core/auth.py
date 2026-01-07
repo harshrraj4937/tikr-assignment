@@ -52,7 +52,7 @@ def decode_access_token(token: str) -> dict:
         )
 
 
-async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
+def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
     """
     Dependency to get the current authenticated user from JWT token
     """
@@ -87,7 +87,7 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
     return user
 
 
-async def get_current_active_user(current_user = Depends(get_current_user)):
+def get_current_active_user(current_user = Depends(get_current_user)):
     """Get current active user (alias for get_current_user)"""
     return current_user
 

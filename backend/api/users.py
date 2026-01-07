@@ -9,7 +9,7 @@ router = APIRouter()
 
 
 @router.get("", response_model=List[UserResponse])
-async def list_users(current_user: User = Depends(get_current_user)):
+def list_users(current_user: User = Depends(get_current_user)):
     """
     List all users (Admin only)
     """
@@ -24,7 +24,7 @@ async def list_users(current_user: User = Depends(get_current_user)):
 
 
 @router.post("", response_model=UserResponse)
-async def create_user(
+def create_user(
     user_data: UserCreate,
     current_user: User = Depends(get_current_user)
 ):
@@ -77,7 +77,7 @@ async def create_user(
 
 
 @router.patch("/{user_id}", response_model=UserResponse)
-async def update_user(
+def update_user(
     user_id: int,
     user_data: UserUpdate,
     current_user: User = Depends(get_current_user)
@@ -120,7 +120,7 @@ async def update_user(
 
 
 @router.get("/roles", response_model=List[dict])
-async def list_roles(current_user: User = Depends(get_current_user)):
+def list_roles(current_user: User = Depends(get_current_user)):
     """
     List all available roles
     """

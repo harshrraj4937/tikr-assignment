@@ -10,7 +10,7 @@ router = APIRouter()
 
 
 @router.get("/{deal_id}/memos", response_model=List[ICMemoResponse])
-async def list_memo_versions(
+def list_memo_versions(
     deal_id: int,
     current_user: User = Depends(get_current_user)
 ):
@@ -30,7 +30,7 @@ async def list_memo_versions(
 
 
 @router.post("/{deal_id}/memos", response_model=ICMemoResponse)
-async def create_memo_version(
+def create_memo_version(
     deal_id: int,
     memo_data: ICMemoCreate,
     current_user: User = Depends(get_current_user)
@@ -74,7 +74,7 @@ async def create_memo_version(
 
 
 @router.get("/{deal_id}/memos/{version}", response_model=ICMemoResponse)
-async def get_memo_version(
+def get_memo_version(
     deal_id: int,
     version: int,
     current_user: User = Depends(get_current_user)
@@ -102,7 +102,7 @@ async def get_memo_version(
 
 
 @router.get("/{deal_id}/memos/latest", response_model=ICMemoResponse)
-async def get_latest_memo(
+def get_latest_memo(
     deal_id: int,
     current_user: User = Depends(get_current_user)
 ):

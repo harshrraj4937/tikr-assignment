@@ -8,7 +8,7 @@ router = APIRouter()
 
 
 @router.post("/login", response_model=TokenResponse)
-async def login(credentials: LoginRequest):
+def login(credentials: LoginRequest):
     """
     Login with email and password
     Returns JWT token
@@ -51,7 +51,7 @@ async def login(credentials: LoginRequest):
 
 
 @router.post("/register", response_model=UserResponse)
-async def register(
+def register(
     user_data: RegisterRequest,
     current_user: User = Depends(get_current_user)
 ):
@@ -103,7 +103,7 @@ async def register(
 
 
 @router.get("/me", response_model=UserResponse)
-async def get_me(current_user: User = Depends(get_current_user)):
+def get_me(current_user: User = Depends(get_current_user)):
     """
     Get current user information
     """

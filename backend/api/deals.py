@@ -10,7 +10,7 @@ router = APIRouter()
 
 
 @router.get("", response_model=List[DealResponse])
-async def list_deals(current_user: User = Depends(get_current_user)):
+def list_deals(current_user: User = Depends(get_current_user)):
     """
     List all deals (accessible to all authenticated users)
     """
@@ -19,7 +19,7 @@ async def list_deals(current_user: User = Depends(get_current_user)):
 
 
 @router.post("", response_model=DealResponse)
-async def create_deal(
+def create_deal(
     deal_data: DealCreate,
     current_user: User = Depends(get_current_user)
 ):
@@ -56,7 +56,7 @@ async def create_deal(
 
 
 @router.get("/{deal_id}", response_model=DealResponse)
-async def get_deal(
+def get_deal(
     deal_id: int,
     current_user: User = Depends(get_current_user)
 ):
@@ -75,7 +75,7 @@ async def get_deal(
 
 
 @router.patch("/{deal_id}", response_model=DealResponse)
-async def update_deal(
+def update_deal(
     deal_id: int,
     deal_data: DealUpdate,
     current_user: User = Depends(get_current_user)
@@ -130,7 +130,7 @@ async def update_deal(
 
 
 @router.patch("/{deal_id}/stage", response_model=DealResponse)
-async def update_deal_stage(
+def update_deal_stage(
     deal_id: int,
     stage_data: DealStageUpdate,
     current_user: User = Depends(get_current_user)
@@ -175,7 +175,7 @@ async def update_deal_stage(
 
 
 @router.delete("/{deal_id}")
-async def archive_deal(
+def archive_deal(
     deal_id: int,
     current_user: User = Depends(get_current_user)
 ):
@@ -211,7 +211,7 @@ async def archive_deal(
 
 
 @router.get("/{deal_id}/activities", response_model=List[ActivityResponse])
-async def get_deal_activities(
+def get_deal_activities(
     deal_id: int,
     current_user: User = Depends(get_current_user)
 ):

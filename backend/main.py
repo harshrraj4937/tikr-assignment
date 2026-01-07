@@ -42,7 +42,7 @@ app.include_router(users.router, prefix="/api/users", tags=["Users"])
 
 
 @app.get("/")
-async def root():
+def root():
     return {
         "message": "Deal Pipeline API",
         "docs": "/docs",
@@ -51,6 +51,6 @@ async def root():
 
 
 @app.get("/health")
-async def health_check():
+def health_check():
     return {"status": "healthy"}
 

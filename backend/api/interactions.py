@@ -11,7 +11,7 @@ router = APIRouter()
 
 # Comment endpoints
 @router.get("/{deal_id}/comments", response_model=List[CommentResponse])
-async def list_comments(
+def list_comments(
     deal_id: int,
     current_user: User = Depends(get_current_user)
 ):
@@ -31,7 +31,7 @@ async def list_comments(
 
 
 @router.post("/{deal_id}/comments", response_model=CommentResponse)
-async def create_comment(
+def create_comment(
     deal_id: int,
     comment_data: CommentCreate,
     current_user: User = Depends(get_current_user)
@@ -62,7 +62,7 @@ async def create_comment(
 
 # Vote endpoints
 @router.get("/{deal_id}/votes", response_model=List[VoteResponse])
-async def list_votes(
+def list_votes(
     deal_id: int,
     current_user: User = Depends(get_current_user)
 ):
@@ -82,7 +82,7 @@ async def list_votes(
 
 
 @router.post("/{deal_id}/vote", response_model=VoteResponse)
-async def cast_vote(
+def cast_vote(
     deal_id: int,
     vote_data: VoteCreate,
     current_user: User = Depends(get_current_user)
@@ -136,7 +136,7 @@ async def cast_vote(
 
 
 @router.get("/{deal_id}/vote/summary")
-async def get_vote_summary(
+def get_vote_summary(
     deal_id: int,
     current_user: User = Depends(get_current_user)
 ):
