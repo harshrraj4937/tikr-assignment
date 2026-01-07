@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Descriptions, Tag, Button, Space, Typography, Avatar } from 'antd';
-import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import { UserOutlined, LogoutOutlined, ProjectOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -13,6 +13,10 @@ const Dashboard: React.FC = () => {
   const handleLogout = () => {
     logout();
     navigate('/login');
+  };
+
+  const handleNavigateToKanban = () => {
+    navigate('/kanban');
   };
 
   const getRoleTag = (roleName: string, hierarchyLevel: number) => {
@@ -74,14 +78,25 @@ const Dashboard: React.FC = () => {
                   <Text type="secondary">Here's your account information</Text>
                 </div>
               </Space>
-              <Button
-                danger
-                icon={<LogoutOutlined />}
-                onClick={handleLogout}
-                size="large"
-              >
-                Logout
-              </Button>
+              <Space>
+                <Button
+                  type="primary"
+                  icon={<ProjectOutlined />}
+                  onClick={handleNavigateToKanban}
+                  size="large"
+                  style={{ backgroundColor: '#667eea', borderColor: '#667eea' }}
+                >
+                  Kanban
+                </Button>
+                <Button
+                  danger
+                  icon={<LogoutOutlined />}
+                  onClick={handleLogout}
+                  size="large"
+                >
+                  Logout
+                </Button>
+              </Space>
             </div>
 
             {/* User Information */}

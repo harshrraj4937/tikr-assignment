@@ -5,6 +5,7 @@ import { AuthProvider, useAuth } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import Kanban from './pages/Kanban';
 
 // Component to redirect logged-in users away from login page
 const LoginRoute: React.FC = () => {
@@ -40,6 +41,14 @@ const App: React.FC = () => {
               element={
                 <ProtectedRoute>
                   <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/kanban"
+              element={
+                <ProtectedRoute>
+                  <Kanban />
                 </ProtectedRoute>
               }
             />

@@ -4,7 +4,8 @@ As a next step, I’d like to share a small take-home assignment:
 
 Build a small web app used by an investment team to move deals through a pipeline.
 
-Scope (what to build) 1) Auth + Roles
+Scope (what to build)
+1) Auth + Roles
 * Email/password auth
 * Roles:
  * Admin: manage users + full access
