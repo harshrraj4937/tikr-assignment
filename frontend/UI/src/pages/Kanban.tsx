@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Tag, Button, Space, Typography, Avatar, Badge, Spin, message, Modal, Form, Input, InputNumber } from 'antd';
-import { ArrowLeftOutlined, PlusOutlined, DollarOutlined, LoadingOutlined } from '@ant-design/icons';
+import { ArrowLeftOutlined, PlusOutlined, DollarOutlined, LoadingOutlined, FileTextOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { dealsAPI } from '../services/api';
 import type { Deal, DealCreate } from '../types/deals';
+import ICMemoEditor from '../components/ICMemoEditor';
+import ICMemoViewer from '../components/ICMemoViewer';
+import ICMemoVersionHistory from '../components/ICMemoVersionHistory';
 
 const { Title, Text } = Typography;
 
@@ -43,6 +46,13 @@ const Kanban: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isCreating, setIsCreating] = useState<boolean>(false);
   const [form] = Form.useForm();
+  
+  // IC Memo states
+  const [selectedDeal, setSelectedDeal] = useState<Deal | null>(null);
+  const [isMemoEditorOpen, setIsMemoEditorOpen] = useState<boolean>(false);
+  const [isMemoViewerOpen, setIsMemoViewerOpen] = useState<boolean>(false);
+  const [isVersionHistoryOpen, setIsVersionHistoryOpen] = useState<boolean>(false);
+  const [viewingVersion, setViewingVersion] = useState<number | null>(null);
 
   // Fetch deals on component mount
   useEffect(() => {
@@ -88,6 +98,49 @@ const Kanban: React.FC = () => {
     } finally {
       setIsCreating(false);
     }
+  };
+
+  // IC Memo handlers
+  const handleOpenMemoEditor = (deal: Deal) => {
+    setSelectedDeal(deal);
+    setIsMemoEditorOpen(true);
+  };
+
+  const handleCloseMemoEditor = () => {
+    setIsMemoEditorOpen(false);
+    setSelectedDeal(null);
+  };
+
+  const handleOpenVersionHistory = (deal: Deal) => {
+    setSelectedDeal(deal);
+    setIsVersionHistoryOpen(true);
+  };
+
+  const handleCloseVersionHistory = () => {
+    setIsVersionHistoryOpen(false);
+    setSelectedDeal(null);
+  };
+
+  const handleViewVersion = (version: number) => {
+    setViewingVersion(version);
+    setIsVersionHistoryOpen(false);
+    setIsMemoViewerOpen(true);
+  };
+
+  const handleCloseMemoViewer = () => {
+    setIsMemoViewerOpen(false);
+    setViewingVersion(null);
+    setIsVersionHistoryOpen(true);
+  };
+
+  const handleSwitchToEditor = () => {
+    setIsVersionHistoryOpen(false);
+    setIsMemoEditorOpen(true);
+  };
+
+  const handleSwitchToHistory = () => {
+    setIsMemoEditorOpen(false);
+    setIsVersionHistoryOpen(true);
   };
 
   const handleDragStart = (e: React.DragEvent, deal: Deal) => {
@@ -200,6 +253,34 @@ const Kanban: React.FC = () => {
                 {ownerInitial}
               </Avatar>
               <Text type="secondary" style={{ fontSize: 12 }}>{ownerName}</Text>
+            </Space>
+          </div>
+
+          {/* IC Memo Actions */}
+          <div style={{ marginTop: 12, paddingTop: 12, borderTop: '1px solid #f0f0f0' }}>
+            <Space style={{ width: '100%', justifyContent: 'space-between' }}>
+              <Button
+                size="small"
+                icon={<FileTextOutlined />}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleOpenMemoEditor(deal);
+                }}
+                style={{ fontSize: 12 }}
+              >
+                IC Memo
+              </Button>
+              <Button
+                size="small"
+                type="link"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleOpenVersionHistory(deal);
+                }}
+                style={{ fontSize: 12, padding: 0 }}
+              >
+                History
+              </Button>
             </Space>
           </div>
         </Space>
@@ -401,7 +482,10 @@ const Kanban: React.FC = () => {
                 style={{ width: '100%' }}
                 min={0}
                 formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                parser={value => value!.replace(/\$\s?|(,*)/g, '')}
+                parser={(value) => {
+                  const parsed = value!.replace(/\$\s?|(,*)/g, '');
+                  return parsed as any;
+                }}
               />
             </Form.Item>
 
@@ -423,6 +507,39 @@ const Kanban: React.FC = () => {
             </Form.Item>
           </Form>
         </Modal>
+
+        {/* IC Memo Components */}
+        {selectedDeal && (
+          <>
+            <ICMemoEditor
+              dealId={selectedDeal.id}
+              dealName={selectedDeal.name}
+              open={isMemoEditorOpen}
+              onClose={handleCloseMemoEditor}
+              onSaved={() => message.success('Memo saved successfully')}
+              onViewHistory={handleSwitchToHistory}
+            />
+
+            <ICMemoVersionHistory
+              dealId={selectedDeal.id}
+              dealName={selectedDeal.name}
+              open={isVersionHistoryOpen}
+              onClose={handleCloseVersionHistory}
+              onViewVersion={handleViewVersion}
+              onEditNew={handleSwitchToEditor}
+            />
+
+            {viewingVersion !== null && (
+              <ICMemoViewer
+                dealId={selectedDeal.id}
+                dealName={selectedDeal.name}
+                version={viewingVersion}
+                open={isMemoViewerOpen}
+                onClose={handleCloseMemoViewer}
+              />
+            )}
+          </>
+        )}
       </div>
     </div>
   );

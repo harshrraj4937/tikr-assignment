@@ -1,0 +1,60 @@
+# Docker Compose for Full Stack Application (Backend + Frontend)
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: tikr-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount the backend directory for hot-reloading in development
+      - ./backend:/app
+      # Persist the SQLite database (override volume mount for db file)
+      - backend-db:/app/db-data
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DEBUG=True
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - tikr-network
+
+  frontend:
+    build:
+      context: ./frontend/UI
+      dockerfile: Dockerfile
+    container_name: tikr-frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - NODE_ENV=production
+      - VITE_API_URL=http://localhost:8000
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:5173"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - tikr-network
+
+volumes:
+  backend-db:
+    driver: local
+
+networks:
+  tikr-network:
+    driver: bridge
+

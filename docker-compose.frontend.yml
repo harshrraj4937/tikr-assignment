@@ -1,0 +1,25 @@
+# Docker Compose for Frontend only
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend/UI
+      dockerfile: Dockerfile
+    container_name: tikr-frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:5173"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  default:
+    name: tikr-frontend-network
+

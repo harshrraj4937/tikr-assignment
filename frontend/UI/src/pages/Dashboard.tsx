@@ -88,14 +88,14 @@ const Dashboard: React.FC = () => {
                 >
                   Kanban
                 </Button>
-                <Button
-                  danger
-                  icon={<LogoutOutlined />}
-                  onClick={handleLogout}
-                  size="large"
-                >
-                  Logout
-                </Button>
+              <Button
+                danger
+                icon={<LogoutOutlined />}
+                onClick={handleLogout}
+                size="large"
+              >
+                Logout
+              </Button>
               </Space>
             </div>
 

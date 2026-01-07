@@ -1,6 +1,7 @@
 import axios from 'axios';
 import type { LoginRequest, LoginResponse, User } from '../types/auth';
 import type { Deal, DealCreate, DealUpdate, DealStageUpdate, Activity } from '../types/deals';
+import type { ICMemo, ICMemoCreate } from '../types/icmemo';
 
 // Create axios instance
 const api = axios.create({
@@ -86,6 +87,29 @@ export const dealsAPI = {
 
   getDealActivities: async (dealId: number): Promise<Activity[]> => {
     const response = await api.get<Activity[]>(`/api/deals/${dealId}/activities`);
+    return response.data;
+  },
+};
+
+// IC Memo API functions
+export const icMemoAPI = {
+  listMemoVersions: async (dealId: number): Promise<ICMemo[]> => {
+    const response = await api.get<ICMemo[]>(`/api/deals/${dealId}/memos`);
+    return response.data;
+  },
+
+  getMemoVersion: async (dealId: number, version: number): Promise<ICMemo> => {
+    const response = await api.get<ICMemo>(`/api/deals/${dealId}/memos/${version}`);
+    return response.data;
+  },
+
+  getLatestMemo: async (dealId: number): Promise<ICMemo> => {
+    const response = await api.get<ICMemo>(`/api/deals/${dealId}/memos/latest`);
+    return response.data;
+  },
+
+  createMemoVersion: async (dealId: number, memoData: ICMemoCreate): Promise<ICMemo> => {
+    const response = await api.post<ICMemo>(`/api/deals/${dealId}/memos`, memoData);
     return response.data;
   },
 };

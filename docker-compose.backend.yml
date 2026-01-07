@@ -1,0 +1,35 @@
+# Docker Compose for Backend only
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: tikr-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount the backend directory for hot-reloading in development
+      - ./backend:/app
+      # Persist the SQLite database (override volume mount for db file)
+      - backend-db:/app/db-data
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DEBUG=True
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  backend-db:
+    driver: local
+
+networks:
+  default:
+    name: tikr-backend-network
+
