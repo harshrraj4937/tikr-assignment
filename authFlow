@@ -1,0 +1,18 @@
+sequenceDiagram
+    participant User
+    participant Frontend
+    participant FastAPI
+    participant Django
+    
+    User->>Frontend: Enter email/password
+    Frontend->>FastAPI: POST /auth/login
+    FastAPI->>Django: Query User model
+    Django-->>FastAPI: User + role
+    FastAPI->>FastAPI: Verify password & generate JWT
+    FastAPI-->>Frontend: JWT token
+    Frontend->>Frontend: Store token in localStorage
+    Frontend->>FastAPI: GET /deals (with JWT header)
+    FastAPI->>FastAPI: Verify JWT & extract user
+    FastAPI->>Django: Query Deals (filtered by role)
+    Django-->>FastAPI: Deals list
+    FastAPI-->>Frontend: Deals JSON

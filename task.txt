@@ -1,0 +1,32 @@
+(FastAPI + React) role and I’m impressed with your background.
+
+As a next step, I’d like to share a small take-home assignment:
+
+Build a small web app used by an investment team to move deals through a pipeline.
+
+Scope (what to build) 1) Auth + Roles
+* Email/password auth
+* Roles:
+ * Admin: manage users + full access
+ * Analyst: create/edit deals + IC memos
+ * Partner: can comment, vote, and approve/decline
+2) Deal Pipeline (Kanban)
+* Stages: Sourced → Screen → Diligence → IC → Invested → Passed
+* UI: Kanban board with drag-and-drop stage changes
+* Deal fields: name, company_url, owner, stage, round, check_size, status, created_at, updated_at
+* Stage change must create an Activity record (e.g., “Analyst moved X from Screen to Diligence”)
+3) IC Memo (simple, structured editor)
+* Sections (fixed list): Summary, Market, Product, Traction, Risks, Open Questions
+* Each section is markdown/plain text
+* Versioning: every save creates a new version row (store full memo snapshot)
+* UI: “Version history” + view older versions (read-only)
+Tech stack
+* Backend: FastAPI
+* Frontend: React
+* DB: Postgres preferred (SQLite acceptable)
+
+Submission: Please create a public GitHub repository for this project and send us the link once it’s ready.
+
+We request you to share your submission at the earliest. Speed of delivery will be a key evaluation metric, with a maximum timeline of 72 hours. Please send whatever progress you have made within this period for our review.
+
+If anything is unclear, feel free to ask questions, happy to clarify.

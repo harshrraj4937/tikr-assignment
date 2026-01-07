@@ -1,0 +1,23 @@
+graph TB
+    subgraph frontend [Frontend - React + Ant Design]
+        UI[UI/ - Main App]
+        Components[components/ - Shared Components]
+        Services[services/ - API Client]
+        Utils[utils/ - Helpers]
+    end
+    
+    subgraph backend [Backend - FastAPI + Django ORM]
+        API[api/ - FastAPI Routes]
+        Models[models/ - Django Models]
+        Core[core/ - Config & Auth]
+    end
+    
+    DB[(PostgreSQL)]
+    
+    UI --> Services
+    Components --> Services
+    Services --> API
+    API --> Models
+    Models --> DB
+    Core --> API
+    Core --> Models

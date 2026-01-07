@@ -1,0 +1,5 @@
+#!/bin/bash
+cd frontend/UI
+echo "Starting React frontend on http://localhost:5173..."
+npm run dev
+
