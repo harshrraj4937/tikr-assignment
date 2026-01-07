@@ -94,6 +94,25 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# Admin panel settings for nginx proxy on port 7071
+# Uncomment these when running admin on port 7071 with nginx
+ADMIN_URL_PREFIX = os.environ.get('ADMIN_URL_PREFIX', '')
+if ADMIN_URL_PREFIX:
+    FORCE_SCRIPT_NAME = ADMIN_URL_PREFIX
+    STATIC_URL = f'{ADMIN_URL_PREFIX}/static/'
+    
+# CSRF settings for reverse proxy
+CSRF_TRUSTED_ORIGINS = [
+    'http://tikr.gymassist.in',
+    'https://tikr.gymassist.in',
+    'http://localhost:5173',
+    'http://localhost:7071',
+]
+
+# Allow nginx to pass the real host
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
