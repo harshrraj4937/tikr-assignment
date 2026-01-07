@@ -6,6 +6,11 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5173,
+    host: true,
+    allowedHosts: [
+      'tikr.gymassist.in',
+      'localhost',
+    ],
     proxy: {
       '/auth': {
         target: 'http://localhost:7000',
