@@ -292,47 +292,80 @@ const Kanban: React.FC = () => {
     <div style={{
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      padding: '20px'
+      padding: 'clamp(12px, 3vw, 20px)'
     }}>
       <div style={{ maxWidth: 1600, margin: '0 auto' }}>
         {/* Header */}
         <div style={{
           background: 'white',
-          padding: '20px 30px',
+          padding: '16px 20px',
           borderRadius: '12px',
           marginBottom: 20,
           boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center'
         }}>
-          <Space size="large">
+          {/* Top Row: Back Button */}
+          <div style={{
+            display: 'flex',
+            marginBottom: 16,
+          }}>
             <Button
               icon={<ArrowLeftOutlined />}
               onClick={handleBackToDashboard}
               size="large"
+              style={{ 
+                flexShrink: 0,
+                minWidth: 'fit-content',
+              }}
             >
-              Back to Dashboard
+              <span>Back to Dashboard</span>
             </Button>
-            <div>
-              <Title level={2} style={{ margin: 0 }}>
+          </div>
+
+          {/* Bottom Row: Title and Add Button */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
+            gap: '16px',
+            flexWrap: 'wrap',
+          }}>
+            <div style={{ 
+              flex: '1 1 auto',
+              minWidth: '200px',
+            }}>
+              <Title level={2} style={{ 
+                margin: 0,
+                marginBottom: 4,
+                fontSize: 'clamp(1.25rem, 4vw, 1.75rem)',
+                lineHeight: 1.2,
+              }}>
                 Deal Pipeline
               </Title>
-              <Text type="secondary">
+              <Text type="secondary" style={{
+                fontSize: 'clamp(0.75rem, 2.5vw, 0.875rem)',
+                display: 'block',
+              }}>
                 Drag and drop deals to move them through stages
               </Text>
             </div>
-          </Space>
-          
-          <Button
-            type="primary"
-            icon={<PlusOutlined />}
-            onClick={handleOpenModal}
-            size="large"
-            style={{ background: '#667eea' }}
-          >
-            Add New Deal
-          </Button>
+            
+            <Button
+              type="primary"
+              icon={<PlusOutlined />}
+              onClick={handleOpenModal}
+              size="large"
+              style={{ 
+                background: '#667eea',
+                flexShrink: 0,
+                alignSelf: 'flex-start',
+                minWidth: 'fit-content',
+              }}
+            >
+              <span>
+                Add New Deal
+              </span>
+            </Button>
+          </div>
         </div>
 
         {/* Kanban Board */}
@@ -353,7 +386,7 @@ const Kanban: React.FC = () => {
         ) : (
           <div style={{
             display: 'grid',
-            gridTemplateColumns: `repeat(${stages.length}, 1fr)`,
+            gridTemplateColumns: `repeat(auto-fit, minmax(min(280px, 100%), 1fr))`,
             gap: 16,
             overflowX: 'auto',
           }}>
